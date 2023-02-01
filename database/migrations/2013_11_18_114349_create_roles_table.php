@@ -1,0 +1,56 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('slug');
+            $table->timestamps();
+        });
+        DB::table('roles')->insert([
+            [
+                'id'=> 1,
+                'title'=>'Admin',
+                'slug'=> 'admin',
+            ],
+            [
+                'id'=> 2,
+                'title'=>'User',
+                'slug'=> 'user',
+        ],
+            [
+                'id'=> 3,
+                'title'=>'Content Manager',
+                'slug'=> 'content',
+        ],
+            [
+                'id'=> 4,
+                'title'=>'Order Manager',
+                'slug'=> 'order',
+            ],
+        ]);
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('roles');
+    }
+};
